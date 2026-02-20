@@ -4,9 +4,9 @@ pub mod schema;
 
 use std::io;
 use diesel::prelude::*;
-use crate::db::establish_connection;
-use crate::model::{NewUser, User};
 use crate::schema::users::dsl::*;
+use crate::model::{NewUser, User};
+use crate::db::establish_connection;
 
 fn main() {
     let mut connection = establish_connection();
@@ -20,7 +20,6 @@ fn main() {
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Falha ao ler a entrada");
 
-    // LISTAR
     if input.trim() == "1" {
         let results = users.load::<User>(&mut connection).expect("Erro ao carregar usuários");
 
@@ -29,7 +28,6 @@ fn main() {
         }
     }
 
-    // CRIAR
     if input.trim() == "2" {
         let mut name_input = String::new();
         let mut email_input = String::new();
@@ -56,7 +54,6 @@ fn main() {
             .expect("Falha ao salvar o novo usuário");
     }
 
-    // ATUALIZAR (buscando pelo email)
     if input.trim() == "3" {
         let mut email_str = String::new();
         println!("Digite o email do usuário a atualizar:");
@@ -72,7 +69,6 @@ fn main() {
             .expect("Erro ao atualizar usuário");
     }
 
-    // DELETAR (buscando pelo email)
     if input.trim() == "4" {
         let mut email_str = String::new();
         println!("Digite o email do usuário a deletar:");
