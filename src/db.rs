@@ -1,7 +1,7 @@
 use std::env;
 use dotenvy::dotenv;
 use diesel::prelude::*;
- use diesel::r2d2::{Pool,ConnectionManager};
+use diesel::r2d2::{Pool,ConnectionManager};
 
 pub type DbPool = Pool<ConnectionManager<SqliteConnection>>;
 
